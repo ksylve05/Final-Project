@@ -1,0 +1,85 @@
+/* All Styles */
+* {
+  font-family: "Lato", sans-serif;
+}
+
+/* Nav Styles */
+nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 30px;
+  background: #444444;
+}
+
+nav .logo {
+  color: #fff;
+  font-family: "Bangers", cursive;
+  font-size: 20px;
+}
+
+nav .links {
+  display: flex;
+}
+
+nav .links li {
+  list-style-type: none;
+  margin: 0 8px 0 8px;
+}
+
+nav .links li a {
+  text-decoration: none;
+  color: #fff;
+  font-family: "Bangers", cursive;
+  font-size: 20px;
+}
+
+/* Main Styles */
+main {
+  display: flex;
+  padding-top: 30px;
+}
+
+/* Products */
+.products {
+  width: 80%;
+  padding: 0 30px;
+}
+
+.item {
+  width: 320px;
+  text-decoration: none;
+  color: black;
+  display: inline-block;
+  margin: 5px 10px;
+}
+
+img {
+  width: 100%;
+}
+
+p {
+  font-family: "Lato", sans-serif;
+}
+
+/* Cart */
+.cart {
+  width: 20%;
+}
+
+.cart-title {
+  padding-bottom: 10px;
+  font-family: "Bangers", cursive;
+  font-size: 20px;
+}
+
+/* Banner Styles */
+.banner {
+  width: 300px;
+  height: 300px;
+  margin-top: 20px;
+}
+
+.banner-img {
+  width: 100%;
+  height: 200px;
+}

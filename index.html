@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Bangers|Lato" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" type="text/css" href="reset.css" />
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="http://www.jeasyui.com/easyui/themes/default/easyui.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="http://www.jeasyui.com/easyui/themes/icon.css"
+    />
+    <script
+      type="text/javascript"
+      src="http://code.jquery.com/jquery-1.6.1.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="http://www.jeasyui.com/easyui/jquery.easyui.min.js"
+    ></script>
+    <title>Discount Shoes</title>
+    <script>
+      //mouse over function
+      function newPicture() {
+        document.querySelector('.banner-img').src="img/sale.jpg";
+      }
+
+      function oldPicture() {
+        document.querySelector('.banner-img').src="img/discount.png";
+      }
+
+      var data = { total: 0, rows: [] };
+      var totalCost = 0;
+
+      $(function() {
+        $("#cartcontent").datagrid({
+          singleSelect: true
+        });
+        $(".item").draggable({
+          revert: true,
+          proxy: "clone",
+          onStartDrag: function() {
+            $(this).draggable("options").cursor = "not-allowed";
+            $(this)
+              .draggable("proxy")
+              .css("z-index", 10);
+          },
+          onStopDrag: function() {
+            $(this).draggable("options").cursor = "move";
+          }
+        });
+        $(".cart").droppable({
+          onDragEnter: function(e, source) {
+            $(source).draggable("options").cursor = "auto";
+          },
+          onDragLeave: function(e, source) {
+            $(source).draggable("options").cursor = "not-allowed";
+          },
+          onDrop: function(e, source) {
+            var name = $(source)
+              .find("p:eq(0)")
+              .html();
+            var price = $(source)
+              .find("p:eq(1)")
+              .html();
+            addProduct(name, parseFloat(price.split("$")[1]));
+          }
+        });
+      });
+
+      function addProduct(name, price) {
+        function add() {
+          for (var i = 0; i < data.total; i++) {
+            var row = data.rows[i];
+            if (row.name == name) {
+              row.quantity += 1;
+              return;
+            }
+          }
+          data.total += 1;
+          data.rows.push({
+            name: name,
+            quantity: 1,
+            price: price
+          });
+        }
+        add();
+        totalCost += price;
+        $("#cartcontent").datagrid("loadData", data);
+        $("div.cart .total").html("Total: $" + totalCost);
+      }
+    </script>
+  </head>
+  <body>
+    <!-- header -->
+    <nav id="nav">
+      <div class="logo">
+        <h1>Discount Shoes</h1>
+      </div>
+      <ul class="links">
+        <li><a href="index.html">Home</a></li>                        
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <!-- header end -->
+    <main>
+        <body style="margin:0;padding:0;height:100%;background:#fafafa;">
+          
+            <ul class="products">
+              <li class="item">
+                <a href="#" class="item">
+                  <img class="img" src="img/alphabounce-instinct.webp"/>
+                  <div>
+                    <p>Alphabounce Instinct</p>
+                    <p>Price: $75</p>
+                  </div>
+                </a>
+              </li>
+              <li class="item">
+                <a href="#" class="item">
+                  <img src="img/alphabounce.webp"/>
+                  <div>
+                    <p>Alphabounce</p>
+                    <p>Price: $55</p>
+                  </div>
+                </a>
+              </li>
+              <li class="item">
+                <a href="#" class="item">
+                  <img src="img/edge-lux.webp"/>
+                  <div>
+                    <p>Edge Lux</p>
+                    <p>Price: $125</p>
+                  </div>
+                </a>
+              </li>
+              <li class="item">
+                <a href="#" class="item">
+                  <img src="img/edgebounce.webp"/>
+                  <div>
+                    <p>Edgebounce</p>
+                    <p>Price: $60</p>
+                  </div>
+                </a>
+              </li>
+              <li class="item">
+                <a href="#" class="item">
+                  <img src="img/harden-vol3.webp"/>
+                  <div>
+                    <p>Harden Vol 3</p>
+                    <p>Price: $145</p>
+                  </div>
+                </a>
+              </li>
+              <li class="item">
+                <a href="#" class="item">
+                  <img src="img/nite-jogger.webp"/>
+                  <div>
+                    <p>Nite Jogger</p>
+                    <p>Price: $80</p>
+                  </div>
+                </a>
+              </li>
+              <li class="item">
+                <a href="#" class="item">
+                  <img src="img/pro-vision.webp"/>
+                  <div>
+                    <p>Pro Vision</p>
+                    <p>Price: $50</p>
+                  </div>
+                </a>
+              </li>
+              <li class="item">
+                <a href="#" class="item">
+                  <img src="img/samba-og.webp"/>
+                  <div>
+                    <p>Samba OG</p>
+                    <p>Price: $95</p>
+                  </div>
+                </a>
+              </li>
+            </ul>
+            <div class="cart">
+              <h1 class="cart-title">Shopping Cart</h1>
+              <div style="background:#fff">
+              <table id="cartcontent" fitColumns="true" style="width:300px;height:auto;">
+                <thead>
+                  <tr>
+                    <th field="name" width=140>Name</th>
+                    <th field="quantity" width=60 align="right">Quantity</th>
+                    <th field="price" width=60 align="right">Price</th>
+                  </tr>
+                </thead>
+              </table>
+              </div>
+              <p class="total">Total: $0</p>
+              <h2>Drop here to add to cart</h2>
+              <div class="banner">
+                  <img class="banner-img" src="img/discount.png" alt="" onmouseover="newPicture()" onmouseout="oldPicture()">
+                </div>
+            </div>
+    </main>
+  </body>
+</html>
